@@ -6,64 +6,58 @@
 
 int main(int argc, char **argv) {
 
-  int i, N, j, error;
+  int i, j, temp;
   Stack s;
   s.top = NULL;
   s.size = 0;
-  /*
-  push(&top,5);
-  printf("%d\n",pop(&top));
-  push(&top,7);
-  push(&top,8);
-  printf("%d\n",pop(&top));
-  printf("%d\n",pop(&top));
-  printf("%d\n",pop(&top));*/
+  /*for(i = 1 ;i < argc;i++){
+      pushs(&s,atoi(argv[i]));
+  }
+  pop_all(&s);
+*/
 
+  printf("Checking the parentheses in argv arguments\n");
   for (i = 1; i < argc; i++) {
-    error = 0;
+    temp = 0;
+    // printf("%d", argc);
     for (j = 0; j < strlen(argv[i]); j++) {
+      // Use stack to help with the parentheses
       switch (argv[i][j]) {
-      case '{': 
-        break;
+      case '{':
+        // pushs(&s, argv[i][j]);
+        // break;
       case '[':
-        push(&s, (argv[i][j]));
-        break;
-      case '}':
-        if (pop(&s) != '{')
-          error = 1;
+        push(&s, argv[i][j]);
         break;
       case ']':
+        if (s.size == 0)
+          temp = 2;
         if (pop(&s) != '[')
-          error = 1;
+          temp = 1;
+        break;
+      case '}':
+        if (s.size == 0)
+          temp = 2;
+        if (pop(&s) != '{')
+          temp = 1;
         break;
       }
-      if (error == 1)
+      if (temp == 1 || temp == 2)
         break;
     }
     if (s.size > 0) {
-      // printf("argv %d: Incorrect too many open parenthesis\n",i);
-      error = 1;
-    }
-
-    if (error == 0)
+      printf("argv %d: Incorrect too many open parenthesis\n", i);
+      pop_all(&s);
+    } else if (temp == 0) {
       printf("argv %d: Correct\n", i);
-    else
-      printf("argv %d: Incorrect (mismatch)\n", i);
-
-    pop_all(&s);
+    }
+    else if(temp == 2){
+      printf("argv %d: Incorrect too many close parenthesis\n",i);
+    }else {
+      printf("argv %d: Incorrect mismatch\n", i);
+    }
   }
 
-  /*
-  Stack s;
-  printf("Checking the parentheses in argv arguments\n");
-   for(i=1;i<argc;i++){
-
-      for(j=0;j<strlen(argv[i]);j++){
-        //Use stack to help with the parentheses
-
-
-      }
-   }
- */
   return 0;
+
 }
