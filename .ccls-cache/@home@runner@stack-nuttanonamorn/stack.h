@@ -28,7 +28,7 @@ void push(StackPtr s, int value) {
 
 char pop(StackPtr s) {
   NodePtr t = s->top;
-  int value;
+  char value;
   if ((s->size > 0)) {
     value = t->data;
     s->top = t->nextPtr;

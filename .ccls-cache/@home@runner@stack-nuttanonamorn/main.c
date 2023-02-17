@@ -32,13 +32,13 @@ int main(int argc, char **argv) {
       case ']':
         if (s.size == 0)
           temp = 2;
-        if (pop(&s) != '[')
+        if(pop(&s) != '[')
           temp = 1;
         break;
       case '}':
         if (s.size == 0)
           temp = 2;
-        if (pop(&s) != '{')
+        if(pop(&s) != '{')
           temp = 1;
         break;
       }
@@ -48,12 +48,14 @@ int main(int argc, char **argv) {
     if (s.size > 0) {
       printf("argv %d: Incorrect too many open parenthesis\n", i);
       pop_all(&s);
-    } else if (temp == 0) {
+    } 
+    else if (temp == 0) {
       printf("argv %d: Correct\n", i);
     }
     else if(temp == 2){
       printf("argv %d: Incorrect too many close parenthesis\n",i);
-    }else {
+    }
+    else {
       printf("argv %d: Incorrect mismatch\n", i);
     }
   }
