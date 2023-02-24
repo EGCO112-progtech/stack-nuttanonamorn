@@ -25,7 +25,7 @@ char pop(StackPtr s);
 void pop_all(StackPtr s);
 
 void push(StackPtr s, int value) {
-  Node *new_node = (NodePtr)malloc(sizeof(struct node));
+  NodePtr new_node = (NodePtr)malloc(sizeof(Node));
   if (new_node) {
     new_node->data = value;
     new_node->nextPtr = s->top;
@@ -37,7 +37,7 @@ void push(StackPtr s, int value) {
 char pop(StackPtr s) {
   NodePtr t = s->top;
   char value;
-  if ((s->size > 0)) {
+  if (s->size > 0) {
     value = t->data;
     s->top = t->nextPtr;
     s->size--;
@@ -51,7 +51,7 @@ char pop(StackPtr s) {
 void pop_all(StackPtr s) {
   while (s->size > 0) {
     pop(s);
-    s->size--;
+    //s->size--;
   }
 }
 
