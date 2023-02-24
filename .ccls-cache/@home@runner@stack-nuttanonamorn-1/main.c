@@ -47,17 +47,17 @@ int main(int argc, char **argv) {
         break;
     }
     if(temp2 == 1){
-      printf("argv %d: Incorrect too many close parenthesis\n",i);
+      printf("argv %d incorrect: too many close parenthesis\n",i);
     }
     else if(temp == 1){
-      printf("argv %d: Incorrect mismatch\n", i);
+      printf("argv %d incorrect: mismatch\n", i);
     }
     else if (s.size > 0) {
-      printf("argv %d: Incorrect too many open parenthesis\n", i);
+      printf("argv %d incorrect: too many open parenthesis\n", i);
       pop_all(&s);
     }
     else {
-      printf("argv %d: Correct\n", i);
+      printf("argv %d correct\n", i);
     }
   }
 

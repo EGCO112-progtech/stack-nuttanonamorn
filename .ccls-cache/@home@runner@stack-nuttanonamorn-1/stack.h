@@ -20,11 +20,11 @@ typedef struct {
 
 typedef Stack *StackPtr;
 
-void push(StackPtr s, int value);
+void push(StackPtr s, char value);
 char pop(StackPtr s);
 void pop_all(StackPtr s);
 
-void push(StackPtr s, int value) {
+void push(StackPtr s, char value) {
   NodePtr new_node = (NodePtr)malloc(sizeof(Node));
   if (new_node) {
     new_node->data = value;
