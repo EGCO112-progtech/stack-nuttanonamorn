@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
       case ']':
         if (s.size == 0)
           temp = 2;
-        if(pop(&s) != '[')
+        else if(pop(&s) != '[')
           temp = 1;
         break;
       case '}':
@@ -40,7 +40,6 @@ int main(int argc, char **argv) {
           temp = 2;
         else if(pop(&s) != '{')
           temp = 1;
-        printf("%d",temp);
         break;
       }
       if (temp == 1 || temp == 2)
