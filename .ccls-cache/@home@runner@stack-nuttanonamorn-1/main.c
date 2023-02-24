@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv) {
 
-  int i, j, temp;
+  int i, j, temp, temp2;
   Stack s;
   s.top = NULL;
   s.size = 0;
@@ -19,6 +19,7 @@ int main(int argc, char **argv) {
   printf("Checking the parentheses in argv arguments\n");
   for (i = 1; i < argc; i++) {
     temp = 0;
+    temp2 = 0;
     // printf("%d", argc);
     for (j = 0; j < strlen(argv[i]); j++) {
       // Use stack to help with the parentheses
@@ -31,31 +32,31 @@ int main(int argc, char **argv) {
         break;
       case ']':
         if (s.size == 0)
-          temp = 2;
-        else if(pop(&s) != '[')
+          temp2 = 1;
+        if(pop(&s) != '[')
           temp = 1;
         break;
       case '}':
         if (s.size == 0)
-          temp = 2;
-        else if(pop(&s) != '{')
+          temp2 = 1;
+        if(pop(&s) != '{')
           temp = 1;
         break;
       }
-      if (temp == 1 || temp == 2)
+      if (temp == 1 || temp2 == 1)
         break;
     }
     if (s.size > 0) {
       printf("argv %d: Incorrect too many open parenthesis\n", i);
       pop_all(&s);
     } 
-    else if (temp == 0) {
+    else if(temp == 0) {
       printf("argv %d: Correct\n", i);
     }
-    else if(temp == 2){
+    else if(temp2 == 1){
       printf("argv %d: Incorrect too many close parenthesis\n",i);
     }
-    else {
+    else if(temp == 1){
       printf("argv %d: Incorrect mismatch\n", i);
     }
   }
